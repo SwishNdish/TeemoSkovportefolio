@@ -1,0 +1,1911 @@
+@font-face {
+    font-family: 'Beyond Wonderland';
+    src: url('assets/BeyondWonderland.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main {
+    overflow: hidden;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    padding-top: 100px;
+
+    /* BACKGROUND IMAGE IMPLEMENTATION */
+    background-image: url('Images/background.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    /* Parallax-like effect */
+    background-repeat: no-repeat;
+
+    color: #333;
+    /* Default text color */
+}
+
+
+
+
+/* --- HEADER & NAVIGATION (Journey Map) --- */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    height: 85px !important;
+    min-height: 85px !important;
+    max-height: 85px !important;
+
+    /* Warm Parchment Beige */
+    background-color: rgba(228, 213, 188, 0.9) !important;
+
+    border: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* Container for the entire timeline ecosystem */
+.header-timeline-container {
+    position: relative !important;
+    width: 100% !important;
+    height: 85px !important;
+    /* HARDCODE the height */
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    overflow: visible !important;
+    /* Changed to visible */
+}
+
+/* --- THE TREE TRUNK (Base Layer) --- */
+.trunk-layer {
+    position: absolute !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    /* ADD THIS */
+    left: 120px !important;
+    right: 0 !important;
+    /* ADD THIS */
+    width: auto !important;
+    /* Let it calculate */
+    height: auto !important;
+    /* Let it calculate */
+
+    background-image: url('assets/trunk-of-tree.svg') !important;
+    background-size: cover !important;
+    /* TRY COVER instead of 100% 100% */
+    background-repeat: no-repeat !important;
+    background-position: left center !important;
+    /* Align left */
+
+    z-index: 0 !important;
+    pointer-events: none !important;
+}
+
+/* --- THE FILL MASK --- */
+.trunk-fill-mask {
+    position: absolute !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    /* ADD THIS */
+    left: 120px !important;
+    right: 0 !important;
+    /* ADD THIS */
+    width: auto !important;
+    height: auto !important;
+
+    background-image: url('assets/trunk-of-tree.svg') !important;
+    background-size: cover !important;
+    /* TRY COVER */
+    background-repeat: no-repeat !important;
+    background-position: left center !important;
+
+    filter: brightness(0) saturate(100%) invert(38%) sepia(20%) saturate(1312%) hue-rotate(347deg) brightness(75%) contrast(89%) !important;
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 0.1s linear;
+    z-index: 1 !important;
+}
+
+/* Hide all img tags */
+.trunk-layer img,
+.trunk-base,
+.trunk-fill-image {
+    display: none !important;
+}
+
+/* --- THE CONTENT (Text on top) --- */
+.header-content {
+    position: relative !important;
+    z-index: 20 !important;
+    width: 100% !important;
+    height: 100% !important;
+
+    display: flex !important;
+    justify-content: space-evenly !important;
+    align-items: center !important;
+}
+
+
+
+/* Swirling Wind Effect for Logo */
+.logo-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 120px;
+    height: 100%;
+    z-index: 30;
+    cursor: pointer;
+    background: transparent;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    height: 90px;
+    width: auto;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
+    transition: filter 0.4s ease;
+}
+
+/* Swirling animation on hover */
+.logo-container:hover .logo {
+    animation: gentleSwirl 1.2s ease-in-out;
+    filter: drop-shadow(0 6px 16px rgba(135, 206, 250, 0.5)) drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+}
+
+@keyframes gentleSwirl {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+
+    25% {
+        transform: rotate(8deg) scale(1.05) translateY(-5px);
+    }
+
+    50% {
+        transform: rotate(-5deg) scale(1.08) translateY(-8px);
+    }
+
+    75% {
+        transform: rotate(3deg) scale(1.05) translateY(-5px);
+    }
+
+    100% {
+        transform: rotate(0deg) scale(1);
+    }
+}
+
+/* Optional: Spiraling wind particles around the logo */
+.logo-container::before,
+.logo-container::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: radial-gradient(circle,
+            rgba(135, 206, 250, 0.8),
+            transparent);
+    border-radius: 50%;
+    opacity: 0;
+    filter: blur(2px);
+}
+
+.logo-container::before {
+    top: 30%;
+    left: 50%;
+}
+
+.logo-container::after {
+    bottom: 30%;
+    left: 50%;
+}
+
+.logo-container:hover::before {
+    animation: spiralParticle1 1.2s ease-out;
+}
+
+.logo-container:hover::after {
+    animation: spiralParticle2 1.2s ease-out 0.15s;
+}
+
+@keyframes spiralParticle1 {
+    0% {
+        transform: translate(0, 0) scale(0);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translate(40px, -50px) rotate(180deg) scale(1.5);
+        opacity: 0;
+    }
+}
+
+@keyframes spiralParticle2 {
+    0% {
+        transform: translate(0, 0) scale(0);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translate(40px, 50px) rotate(-180deg) scale(1.5);
+        opacity: 0;
+    }
+}
+
+
+
+/* (((Nav - The Distributed Timeline((((((((((((( */
+.timeline-nav {
+    /* Position alongside the trunk */
+    margin-left: 120px;
+    /* Offset by logo width */
+    width: calc(100% - 100px);
+    /* Fill the rest */
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -15px;
+}
+
+.timeline-nav ul {
+    list-style: none;
+    display: flex;
+    width: 100%;
+    /* Use full available width */
+    height: 100%;
+    justify-content: space-evenly;
+    /* Spread milestones */
+    /* --- CHANGE THESE 3 LINES --- */
+    justify-content: flex-end !important;
+    /* Pushes everything to the right */
+    padding-right: 80px;
+    /* Keeps it from hitting the screen edge */
+    gap: 220px;
+}
+
+.timeline-nav li {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    /* Full height to allow vertical line adjustment */
+}
+
+/* --- THE NOTCHES (Story Markers) --- */
+.notch {
+    display: block;
+    position: absolute;
+    top: 0px;
+    /* Start from top edge of "plank"? */
+    height: 80px;
+    /* Cut through the timeline */
+    width: 2px;
+
+    /* Etched Look */
+    background: rgba(0, 0, 0, 0.5);
+    border-left: 1px solid rgba(0, 0, 0, 0.8);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+
+    z-index: 5;
+    /* Below text */
+}
+
+/* Links */
+.ink-link {
+    /* On top of the notch */
+    position: relative;
+    z-index: 10;
+
+    text-decoration: none;
+    font-family: 'Beyond Wonderland', serif;
+    font-size: 2.8rem;
+    /* Larger "Chapter Title" feel */
+    color: #000000;
+    /* Warm parchment */
+    /* 2. ADD STROKE HERE */
+    -webkit-text-stroke: 0.4px #BAD0E3;
+    /* Width and Color of the outline */
+
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);
+    transition: color 0.3s ease, transform 0.3s ease;
+
+    /* Spacing from notch if needed, or centering */
+    padding-top: 10px;
+}
+
+.ink-link:hover,
+.ink-link.active {
+    color: #fff;
+    transform: scale(1.1);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    /* Active Glow effect */
+    -webkit-text-stroke: 1px #e3d5b0;
+    /* Warm beige stroke */
+    filter: drop-shadow(0 0 5px #e3d5b0);
+}
+
+/* Disable old effects */
+.ink-link::after {
+    display: none;
+}
+
+
+
+
+
+
+/* --- EQUIPPED SKILLS SECTION (Fixed) --- */
+/* --- EQUIPPED SKILLS SECTION (Fixed) --- */
+#equipped-skills {
+    position: relative;
+    background-color: transparent;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.skills-visual {
+    position: relative;
+    width: 85vw;
+    max-width: 1400px;
+    margin-top: 50px;
+}
+
+.skills-bg-image {
+    width: 100%;
+    display: block;
+    border: none !important;
+}
+
+/* --- THE GROUPS (Icon + Text) --- */
+.skill-group {
+    position: absolute;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Centers everything horizontally */
+    z-index: 10;
+}
+
+/* --- ADJUST DISTANCE HERE --- */
+/* 1. MOVE THE WHOLE GROUP (Icon + Text) 
+   Change 'top' to move Up/Down.
+   Change 'left' to move Left/Right. 
+*/
+#skill-visionary {
+    top: 15%;
+    /* Decrease to move UP */
+    left: 12%;
+    /* Increase to move RIGHT */
+}
+
+#skill-reliability {
+    top: 15%;
+    left: 62%;
+}
+
+#skill-cooperation {
+    top: 65%;
+    left: 12%;
+}
+
+#skill-ingenious {
+    top: 65%;
+    left: 62%;
+}
+
+/* 2. MOVE JUST THE TEXT CLOSER TO THE ICON 
+   Change 'margin-top' to negative to pull it closer.
+*/
+.skill-title {
+
+    /* Changed from 250px to 20px to sit below icon */
+    margin-top: 380px;
+    font-family: 'Beyond Wonderland', serif;
+    font-size: 3.5rem;
+    /* Large font */
+    color: #000;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
+
+    /* INK REVEAL SETUP */
+    opacity: 0;
+    /* Starts hidden */
+    clip-path: inset(0 100% 0 0);
+    /* Hides text by clipping it from the right */
+
+    /* Font rendering */
+    -webkit-font-smoothing: antialiased;
+    font-weight: normal;
+    white-space: nowrap;
+}
+
+/* --- SPECIAL OVERRIDE FOR COOPERATION ONLY --- */
+#skill-cooperation .skill-title {
+    /* Adjust this number separately from the others.
+       -40px moves it DOWN.
+       -100px moves it UP. 
+    */
+
+    /* Pushes the text specifically for the hand icon further down */
+    margin-top: 86% !important;
+    left: 10px !important;
+}
+
+#skill-ingenious .skill-title {
+    margin-top: 85% !important;
+}
+
+/* --- THE ANIMATION (Smooth Wipe) --- */
+.skill-title.typing {
+    opacity: 1 !important;
+    /* Forces it to stay visible */
+
+    /* This reveals the text from left to right smoothly */
+    animation: inkReveal 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* This class ensures it STAYS visible after animation ends */
+.skill-title.typed {
+    opacity: 1 !important;
+    clip-path: inset(0 0 0 0) !important;
+    /* Fully revealed */
+}
+
+@keyframes inkReveal {
+    0% {
+        clip-path: inset(0 100% 0 0);
+        /* Hidden */
+    }
+
+    100% {
+        clip-path: inset(0 0 0 0);
+        /* Visible */
+    }
+}
+
+/* --- NEW HOVER EFFECT: ETHEREAL MIST --- */
+
+.skill-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000;
+    text-align: center;
+    line-height: 1.2;
+
+    /* UI FIX: Add a faint dark wash behind text to make it readable on green */
+    background: radial-gradient(closest-side, rgba(255, 255, 255, 0.3), transparent);
+    padding: 10px;
+
+    /* THE "WIND" SETUP */
+    opacity: 0;
+    transform: translateY(15px) scale(0.95);
+    /* Starts lower and slightly smaller */
+    filter: blur(8px);
+    /* Starts blurry (like fog) */
+
+    /* The Transition: "Ease-out" makes it feel like it's drifting to a stop */
+    transition:
+        opacity 0.8s ease-out,
+        transform 0.8s cubic-bezier(0.2, 1, 0.3, 1),
+        filter 0.8s ease-out;
+
+    pointer-events: none;
+    /* Let clicks pass through */
+}
+
+/* THE TRIGGER */
+.skill-group:hover .skill-body {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    /* Floats up into place */
+    filter: blur(0);
+    /* Becomes crystal clear */
+}
+
+/* UI HINT: Make the Hitbox/Icon pulse slowly so users know to hover */
+.skill-hitbox {
+    /* Keep your existing positioning/size code here */
+    animation: windPulse 3s infinite ease-in-out;
+}
+
+@keyframes windPulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+
+    /* Breathing effect */
+    100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+}
+
+/* --- THE WIND GUST CTA (Icon) --- */
+.wind-gust {
+    /* Changed from absolute to relative for flex flow */
+    position: absolute;
+    width: 120px;
+    height: 60px;
+    overflow: visible;
+    pointer-events: none;
+    z-index: 15;
+
+    /* Center in flex container */
+
+    left: -55%;
+    top: auto;
+    transform: none;
+}
+
+
+#skill-visionary .wind-gust {
+    left: -40%;
+    margin-top: 160%;
+}
+
+#skill-reliability .wind-gust {
+    left: -55%;
+    margin-top: 160%;
+}
+
+#skill-cooperation .wind-gust {
+    left: -40%;
+    /* ← adjust this until it matches the top two */
+    margin-top: 120%;
+}
+
+#skill-ingenious .wind-gust {
+    left: -55%;
+    /* ← adjust this until it matches the top two */
+    margin-top: 120%;
+}
+
+.wind-path {
+    fill: none;
+    stroke: #000;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.2));
+
+    /* Animation setup */
+    stroke-dasharray: 200;
+    stroke-dashoffset: 200;
+    animation: windFlow 4.5s infinite ease-in-out;
+}
+
+.main-gust {
+    stroke-width: 4px;
+}
+
+.breeze-top {
+    stroke-width: 2px;
+    animation-delay: 0.2s;
+}
+
+.breeze-bottom {
+    stroke-width: 2px;
+    animation-delay: 0.4s;
+}
+
+/* Hide when user hovers */
+.skill-group:hover .wind-gust {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+/* --- THE WIND FLOW ANIMATION --- */
+@keyframes windFlow {
+    0% {
+        stroke-dashoffset: 200;
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    40% {
+        stroke-dashoffset: 0;
+        /* Fully streamed in */
+        opacity: 0.8;
+    }
+
+    60% {
+        stroke-dashoffset: -200;
+        /* Streams OUT forward */
+        opacity: 0;
+    }
+
+    100% {
+        stroke-dashoffset: -200;
+        opacity: 0;
+    }
+}
+
+/* --- RESPONSIVE MOBILE STYLES --- */
+@media (max-width: 768px) {
+
+    /* 1. Allow the container to be taller so items don't squish */
+    .skills-visual {
+        width: 95vw;
+        height: auto;
+        min-height: 600px;
+        /* Gives enough space for vertical stacking if needed */
+    }
+
+    /* 2. Shrink the Headlines */
+    .skill-title {
+        position: absolute;
+        font-size: 2rem;
+        /* Much smaller than 3.5rem */
+        margin-top: 10%;
+        /* Less distance needed on mobile */
+    }
+
+    /* 3. Shrink the Body Text */
+    .skill-body {
+        font-size: 1rem;
+        background: rgba(255, 255, 255, 0.6);
+        /* Stronger background to read over image */
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    /* 4. Adjust Positions for Mobile Screens */
+    /* You might need to tweak these % slightly for your specific phone view */
+    #skill-visionary {
+        top: 10%;
+        left: 5%;
+    }
+
+    #skill-reliability {
+        top: 10%;
+        left: 55%;
+    }
+
+    #skill-cooperation {
+        top: 50%;
+        left: 10%;
+    }
+
+    /* 5. Hide the fancy wind animation on mobile to save performance/space */
+    .wind-gust {
+        display: none;
+    }
+}
+
+
+
+
+
+
+
+#home {
+    /* Transparent to show the background */
+    background-color: transparent;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85vh;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Add a slight overlay if needed for text readability, 
+   but for now keep it pure as requested "pristine wilderness" */
+
+#home video {
+    width: 85vw;
+    height: 85vh;
+    object-fit: cover;
+    display: block;
+
+    /* Optional: Add a frame or shadow to make it pop against the landscape */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+
+    /* Make footer semi-transparent or match the parchment theme? */
+    background: rgba(228, 213, 188, 0.9);
+}
+
+#projects {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+
+}
+
+.book-container {
+    position: relative;
+    width: 85vw;
+    z-index: 1;
+    aspect-ratio: 2744 / 7400;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.ancient-book {
+    width: 100%;
+    height: auto;
+    display: block;
+
+    pointer-events: auto;
+}
+
+/* --- FEATURE 1: FLOATING HEADLINE --- */
+.projects-headline {
+    font-family: 'Beyond Wonderland', serif;
+    font-size: 8rem;
+    /* Make it slightly bigger */
+    color: #e3d5b0;
+    /* Light Parchment color */
+    text-align: center;
+
+    /* THE FIX: Turn off the browser's fake bolding */
+    font-weight: normal !important;
+
+    /* Ensure no other strokes are interfering */
+    -webkit-text-stroke: 1px #746E5B;
+    /* Wood stroke */
+
+    /* The "Pop" Factor */
+    text-shadow: 4px 4px 0px #000000;
+
+    margin-bottom: -40px;
+    position: relative;
+    z-index: 20;
+}
+
+h1.skills-headline {
+    font-size: 6rem !important;
+    padding-top: 40px;
+    /* ← white space above */
+    padding-bottom: 40px;
+    /* ← white space below */
+}
+
+.projects-headline.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- FEATURE 2: HANDWRITTEN TITLE (Left Page) --- */
+.handwritten-title {
+    position: absolute;
+    top: 5%;
+    /* Top of the left page */
+    left: 15%;
+    /* Left/Center of the left page */
+    width: 35%;
+    /* Restrict width to left page area */
+
+    font-family: 'Beyond Wonderland', serif;
+    font-size: 4rem;
+    color: #3b2510;
+    transform: rotate(-5deg);
+    text-align: center;
+    line-height: 1.2;
+    z-index: 15;
+    /* Ensure on top */
+}
+
+.hw-letter {
+    opacity: 0;
+    display: inline-block;
+    transition: opacity 0.5s ease;
+}
+
+.hw-letter.revealed {
+    opacity: 1;
+}
+
+
+/* --- FEATURE 3: LIVING PORTRAIT (Right Page) --- */
+.frame-wrapper {
+    position: absolute;
+    top: 10%;
+    right: 12%;
+    width: 280px;
+    max-width: 25vw;
+    height: fit-content;
+    cursor: pointer;
+    transform-origin: top center;
+    animation: sway 6s ease-in-out infinite alternate;
+    z-index: 15;
+    pointer-events: auto;
+    overflow: hidden;
+    height: auto;
+    max-height: 320px;
+
+    /* ADD THIS — clips anything sticking out */
+}
+
+/* NEW FRAME POSITIONING */
+#vol-anim-frame {
+    right: auto;
+    /* override the default right positioning */
+    left: 52%;
+    /* places it on the right page, left of the first frame */
+    top: 10%;
+    /* same vertical start as the first frame */
+}
+
+.frame-rope {
+    position: absolute;
+    top: -60px;
+    /* Pull rope up */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 60px;
+    /* Connect to top of frame */
+    background: linear-gradient(to bottom, transparent, #5a3a1a);
+    pointer-events: none;
+}
+
+/* The Overlay (.frame-overlay - The PNG) */
+.frame-overlay {
+    position: relative;
+    width: 100%;
+    height: auto;
+    z-index: 2;
+    display: block;
+    pointer-events: auto;
+}
+
+/* The Content (.frame-canvas - The Fix) */
+.frame-canvas {
+    position: absolute;
+    z-index: 1;
+    width: 10%;
+    left: 40%;
+    top: 33%;
+    /* was 44% — moves it up */
+    transform: translate(-40%, -50%) rotate(65deg);
+    /* was -13deg — flip to positive to match frame tilt */
+    opacity: 0.85;
+    mix-blend-mode: multiply;
+    border-radius: 2px;
+    height: 0;
+    overflow: visible;
+}
+
+/* LAYER 3: play button on top of everything */
+.play-button {
+    position: absolute;
+    top: 33%;
+    left: 46%;
+    transform: translate(-50%, -50%) rotate(-25deg);
+    z-index: 3;
+    width: 48px;
+    height: 48px;
+    background: rgba(201, 169, 110, 0.88);
+    border: 2px solid #c9a96e;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: #3b2510;
+    opacity: 0.4;
+    transition: opacity 0.3s, transform 0.3s;
+    pointer-events: auto;
+}
+
+.frame-wrapper:hover .play-button {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+
+}
+
+@keyframes sway {
+    0% {
+        transform: rotate(-1deg);
+    }
+
+    100% {
+        transform: rotate(1deg);
+    }
+}
+
+/* Remove old class if present */
+.frame-unit {
+    position: static;
+    transform: none;
+    animation: none;
+    width: 100%;
+}
+
+.frame-wrapper:hover {
+    filter: brightness(1.1);
+}
+
+
+
+/* --- LIGHTBOX MODAL --- */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.lightbox.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.lightbox video {
+    max-width: 90%;
+    max-height: 90%;
+    box-shadow: 0 0 50px rgba(180, 140, 60, 0.3);
+    border: 2px solid #5a4020;
+}
+
+.close-btn {
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    font-size: 3rem;
+    color: #fff;
+    cursor: pointer;
+    transition: color 0.3s;
+    font-family: sans-serif;
+    z-index: 2001;
+    /* Ensure on top */
+}
+
+.close-btn:hover {
+    color: #c9a96e;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .projects-headline {
+        font-size: 3.5rem;
+    }
+
+    .book-container {
+        width: 100vw;
+    }
+
+    .left-page,
+    .right-page {
+        width: 80%;
+        left: 10%;
+        right: auto;
+        top: 10%;
+        height: 40%;
+    }
+
+    .left-page {
+        top: 15%;
+        /* Top half */
+    }
+
+    .right-page {
+        top: 55%;
+        /* Bottom half */
+    }
+
+    .handwritten-title {
+        font-size: 2.5rem;
+    }
+}
+
+
+.project-description {
+    position: absolute;
+    top: 8%;
+    left: 13%;
+    width: 35%;
+
+    font-family: 'IM Fell DW Pica SC', serif;
+    font-size: clamp(0.85rem, 1.3vw, 1.5rem);
+    color: #190f07;
+    line-height: 1.4;
+    opacity: 0.95;
+    pointer-events: auto;
+    z-index: 15;
+
+    /* TEXT BOX — worn parchment look */
+    background: rgba(245, 230, 195, 0.82);
+    padding: 1.2em 1.4em;
+    border-radius: 2px;
+
+    /* Worn/aged edges */
+    box-shadow:
+        inset 0 0 12px rgba(101, 64, 20, 0.25),
+        2px 3px 14px rgba(0, 0, 0, 0.35);
+
+    /* Slight tilt for handwritten feel */
+    transform: rotate(-0.5deg);
+
+    /* Rough border */
+    border: 1px solid rgba(139, 90, 40, 0.3);
+}
+
+/* --- ROLE & CONTRIBUTIONS CARD (Right Page) --- */
+.project-role-card {
+    position: absolute;
+    /* Position it on the Right Page, below the Polaroid frame */
+    top: 11%;
+    right: 12%;
+    width: 35%;
+    /* Adjust to fit the page width */
+    max-width: 450px;
+
+    /* The "Paper Note" Look */
+    background: rgba(250, 245, 235, 0.92);
+    border: 1px solid #5a3a1a;
+    /* Dark brown border */
+    border-radius: 4px;
+    /* Slight rounding */
+    padding: 1.2rem;
+    box-shadow: 3px 4px 10px rgba(0, 0, 0, 0.15);
+    z-index: 5;
+    /* Worn/aged edges */
+    box-shadow:
+        inset 0 0 12px rgba(101, 64, 20, 0.25),
+        2px 3px 14px rgba(0, 0, 0, 0.35);
+
+    /* Slight tilt for handwritten feel */
+    transform: rotate(-0.5deg);
+
+    /* Rough border */
+    border: 1px solid rgba(139, 90, 40, 0.3);
+
+    /* Typography */
+    font-family: 'IM Fell DW Pica SC', serif;
+    /* Or your site's body font */
+    color: #2a1a0a;
+    font-size: 1rem;
+    /* Keep it small to fit */
+    line-height: 1.4;
+    pointer-events: auto;
+    /* Ensure text is selectable */
+
+    /* Tilt for realism */
+    transform: rotate(1deg);
+}
+
+.project-role-card h3 {
+    font-family: 'IM Fell DW Pica SC', serif;
+    /* Use the theme font for header */
+    color: #5a3a1a;
+    font-size: 1.7rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.role-separator {
+    width: 60%;
+    height: 1px;
+    background: #c9a96e;
+    margin: 0 auto 10px auto;
+}
+
+.role-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.role-list li {
+    margin-bottom: 8px;
+}
+
+.role-list strong {
+    color: #8b5a2b;
+    /* Highlight the keywords */
+}
+
+
+/* --- SCROLL CTA BUTTON (Left Page) --- */
+.scroll-cta-btn {
+    position: absolute;
+    bottom: 79.5%;
+    /* Adjust to fit below text */
+    left: 22%;
+    /* Center horizontally on the left page */
+
+    z-index: 10;
+
+    display: inline-block;
+    padding: 15px 30px;
+    text-decoration: none;
+
+    /* The "Ancient Scroll" Look */
+    background-color: #e3d5b0;
+    /* Old Parchment */
+    color: #2c1b0e;
+    /* Dark Ink */
+    border: 2px solid #2c1b0e;
+    /* Hand-drawn rough border */
+
+    /* Organic Rounded Corners (Like rolled/torn paper) */
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+
+    /* Typography */
+    font-family: 'IM Fell DW Pica SC', serif;
+    /* Handwritten theme font */
+    font-size: 1.5rem;
+    /* Large and readable */
+    font-weight: bold;
+    text-align: center;
+
+    /* Depth */
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+
+    /* Interaction */
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    pointer-events: auto;
+}
+
+.scroll-cta-btn:hover {
+    transform: scale(1.05) rotate(-1deg);
+    background-color: #dccaa0;
+    /* Slightly darker parchment */
+    box-shadow: 4px 6px 12px rgba(0, 0, 0, 0.4);
+    color: #000;
+}
+
+
+/* === VOLUME VILLAGE POSITIONING === */
+#vv-frame {
+    top: 3.7%;
+    /* move the first frame up/down */
+    right: 12%;
+    /* move left/right */
+}
+
+#vol-anim-frame {
+    top: 3.7%;
+    /* move the second frame up/down */
+    left: 52%;
+    /* already defined but you can change */
+}
+
+
+
+/* === STENO MUSEUM POSITIONING === */
+#steno-title {
+    top: 22%;
+    /* Volume Village is 10% — push this way down */
+}
+
+#steno-frame {
+    top: 23%;
+    /* matches steno title vertical position */
+    left: 78%;
+}
+
+#steno-role {
+    top: 24%;
+    /* below the steno frame */
+    left: 50%;
+    width: 31%;
+}
+
+#steno-description {
+    top: 25%;
+    /* below steno title */
+}
+
+#steno-btn {
+    bottom: 20%;
+    /* near bottom of book */
+}
+
+/* === KAFFE POSITIONING === */
+#kaffe-title {
+    top: 33.5%;
+}
+
+#kaffe-frame {
+    top: 34%;
+    left: 46%;
+    z-index: 20;
+}
+
+#kaffe-role {
+    top: 35.5%;
+    width: 22%;
+    left: 65%;
+}
+
+#kaffe-description {
+    top: 35.9%;
+}
+
+#kaffe-btn {
+    bottom: 15%;
+}
+
+/* ========================================= */
+/*              MEET ME SECTION              */
+/* ========================================= */
+
+#about {
+    position: relative;
+    width: 100%;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: -1600px;
+    margin-bottom: 0;
+}
+
+/* Headline Style (Mirroring Projects) */
+.about-headline {
+    font-family: 'Beyond Wonderland', serif;
+    font-size: 8rem;
+    color: #e3d5b0;
+    text-align: center;
+    font-weight: normal !important;
+    -webkit-text-stroke: 1px #746E5B;
+    /* Wood stroke */
+    text-shadow: 4px 4px 0px #000000;
+    margin-bottom: -40px;
+    position: relative;
+    z-index: 20;
+}
+
+/* My Portrait inside Greet Me */
+#about-portrait {
+    position: absolute;
+    top: 4%;
+    left: 69%;
+    width: 25%;
+    max-width: 320px;
+    z-index: 12;
+    transform: rotate(6deg);
+    /* Using drop-shadow so the transparent shape casts the shadow instead of a bounding box */
+    filter: drop-shadow(4px 8px 20px rgba(0, 0, 0, 0.4));
+}
+
+/* Mobile Adjust for Headline */
+@media (max-width: 768px) {
+    .about-headline {
+        font-size: 3.5rem;
+    }
+
+    #about-portrait {
+        width: 40%;
+        top: 20%;
+        left: 30%;
+    }
+}
+
+/* --- "MEET ME" CONTENT POSITIONING --- */
+
+/* 1. MY JOURNEY (Top) */
+#journey-title {
+    top: 5%;
+}
+
+#journey-description {
+    top: 8%;
+    width: 40%;
+    left: 10%;
+}
+
+#journey-role {
+    top: 14%;
+    /* Aligned generally with description/title */
+}
+
+
+/* 2. PHILOSOPHY (Middle) */
+#philosophy-title {
+    top: 14%;
+}
+
+#philosophy-description {
+    top: 18%;
+}
+
+#philosophy-role {
+    top: 21%;
+}
+
+
+/* 3. APPROACH (Bottom) */
+#approach-title {
+    top: 32%;
+}
+
+#approach-description {
+    top: 35%;
+}
+
+
+/* Clean/Minimal Style for the Image */
+#approach-role {
+    position: absolute;
+    top: 36%;
+    /* keep existing vertical position */
+    left: 51%;
+    /* keep existing horizontal position */
+    width: 28%;
+    background: none;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+    overflow: visible;
+}
+
+/* Container for Image & Canvas */
+.dust-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+/* The Image Itself */
+.ancient-portrait {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: sepia(60%) contrast(90%) brightness(85%);
+    /* aged photo look */
+}
+
+/* The Dust Canvas Overlay */
+.dust-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    /* Let clicks pass through if needed */
+    z-index: 2;
+    /* Above the image */
+}
+
+/* --- MARQUEE SCROLL SECTION --- */
+/* Ensure #about doesn't force excessive height */
+
+
+/* --- MARQUEE SCROLL SECTION --- */
+#marquee-scroll-section {
+    position: relative;
+    width: 100%;
+    /* Let it take natural height based on aspect ratio */
+    display: flex;
+    flex-direction: column;
+    /* Stack headline and scroll */
+    align-items: center;
+    justify-content: center;
+    padding: 0 0 50px 0;
+    /* Reduced top padding to 0 */
+    margin-top: 0;
+    /* Ensure no top margin */
+    overflow: hidden;
+    background-color: transparent;
+    margin-top: -1500px;
+}
+
+/* Style for the new headline */
+.crafts-headline {
+    font-family: 'Beyond Wonderland', serif;
+    font-size: 5rem;
+    color: #e3d5b0;
+    /* Light parchment to match "Greet Me" or dark? User said "match medieval theme". "Greet Me" is #e3d5b0 with black shadow. */
+    text-align: center;
+    text-shadow: 3px 3px 0px #000000;
+    -webkit-text-stroke: 1px #746E5B;
+    /* Wood stroke */
+    margin-bottom: 20px;
+    z-index: 20;
+    font-weight: normal;
+}
+
+.scroll-container {
+    position: relative;
+    width: 90vw;
+    max-width: 1200px;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scroll-bg {
+    display: block;
+    width: 100%;
+    height: auto;
+    /* Stroke effect using drop-shadows */
+    filter: drop-shadow(1px 0px 0px #8A603C) drop-shadow(-1px 0px 0px #8A603C) drop-shadow(0px 1px 0px #8A603C) drop-shadow(0px -1px 0px #8A603C);
+    border: none;
+    /* Remove standard border */
+}
+
+.marquee-wrapper {
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    left: 17%;
+    right: 20%;
+    width: auto;
+    max-width: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+}
+
+.marquee-content {
+    display: flex;
+    /* Reverting to nowrap for marquee effect as requested */
+    white-space: nowrap;
+    animation: scrollText 25s linear infinite;
+    /* Slower for readability */
+}
+
+.marquee-wrapper:hover .marquee-content {
+    animation-play-state: paused;
+}
+
+.marquee-content span {
+    font-family: 'Beyond Wonderland', serif;
+    font-size: 2.5rem;
+    color: #4a3b2a;
+    /* Dark ink color */
+    padding: 0 0.5rem;
+    line-height: 1.2;
+
+    /* Slight imperfection for handwritten feel */
+    transform: rotate(-1deg);
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.4);
+}
+
+.marquee-icon {
+    height: 300px;
+    /* Adjust size to fit marquee */
+    width: auto;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 20px;
+
+
+    /* Match the theme */
+}
+
+.separator {
+    color: #8b0000;
+    /* Dried blood red or ink accent */
+    font-size: 1.5rem;
+    vertical-align: middle;
+    opacity: 0.7;
+    margin: 0 5px;
+}
+
+@keyframes scrollText {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+        /* Move by half the width (since content is duplicated) */
+    }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .crafts-headline {
+        font-size: 3rem;
+    }
+
+    .marquee-wrapper {
+        top: 20%;
+        bottom: 20%;
+        left: 22%;
+        right: 22%;
+    }
+
+    .marquee-content span {
+        font-size: 1.2rem;
+    }
+}
+
+/* --- CONTACT SECTION --- */
+#contact {
+    position: relative;
+    width: 100%;
+    min-height: 40vh;
+    /* Give it some space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0 100px 0;
+    /* Space before footer */
+    background: transparent;
+}
+
+.wooden-plaque {
+    position: relative;
+    width: 80%;
+    max-width: 800px;
+    background-color: #8A603C;
+    /* Wood base color */
+    border-radius: 15px;
+    /* Organic corners */
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    /* Crop the texture */
+
+    /* Depth */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6),
+        inset 0 0 20px rgba(0, 0, 0, 0.5);
+    /* Inner shadow for depth */
+
+    /* Border to look like edge of wood */
+    border: 4px solid #5d4037;
+}
+
+/* Texture Overlay */
+.plaque-texture {
+    position: absolute;
+    top: 0;
+    left: -10%;
+    width: 140%;
+    height: 100%;
+    background-image: url('assets/trunk-of-tree.svg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.45;
+    /* Low opacity for engraved look */
+    mix-blend-mode: multiply;
+    /* Blend into the wood color */
+    pointer-events: none;
+    z-index: 0;
+}
+
+
+
+.contact-headline {
+    font-family: 'Beyond Wonderland', serif;
+    font-size: 4.5rem;
+    color: #e3d5b0;
+    /* Light parchment */
+    margin-bottom: 30px;
+    z-index: 1;
+    position: relative;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    -webkit-text-stroke: 1px #746E5B;
+    /* Wood stroke */
+    font-weight: normal;
+}
+
+.email-link {
+    font-family: 'IM Fell DW Pica SC', serif;
+    font-size: 2.5rem;
+    color: #dddddd;
+    -webkit-text-stroke: 0.2px #BAD0E3;
+    /* thickness and color */
+    /* Gold/Ink color */
+    text-decoration: none;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    /* Initial subtle glow */
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+}
+
+.email-link:hover {
+    color: #ffffff;
+    /* Ink reveal / Magic glow effect */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+        0 0 20px rgba(255, 215, 0, 0.6);
+    transform: scale(1.05);
+}
+
+/* Tooltip for functionality feedback */
+.tooltip {
+    /* ... existing tooltip style ... */
+    visibility: hidden;
+    width: 80px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -40px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    pointer-events: none;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.tooltip.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* ========================================= */
+/*           FANTASY FOOTER SECTION          */
+/* ========================================= */
+
+#fantasy-footer {
+    position: relative;
+    width: 100%;
+    /* Ensure enough space for the visual breathing room */
+    padding: 120px 0 80px 0;
+    background-color: transparent;
+    /* or blend with body bg */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-top: -50px;
+    /* Slight overlap with previous section if desired */
+}
+
+.footer-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    /* Constrain width for the tree graphic */
+    height: 500px;
+    /* Fixed height area for the tree composition */
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    /* Align text towards bottom/center */
+}
+
+/* 1. LAYER - BASE (Faint Sketch) */
+.footer-trunk-base {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    height: 100%;
+    /* Fill the container height */
+    opacity: 0.2;
+    /* Very faint */
+    filter: grayscale(100%) sepia(30%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* 2. LAYER - FILL (The "Sap" Animation) */
+.footer-trunk-fill {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    /* Match base */
+    height: 100%;
+
+    /* The Magic: Clip Path starts fully clipped from bottom */
+    /* inset(top right bottom left) */
+    /* We want to reveal from BOTTOM to TOP. 
+       So we clip the TOP 100% initially. */
+    clip-path: inset(100% 0 0 0);
+
+    pointer-events: none;
+    z-index: 2;
+    transition: clip-path 3s ease-in-out;
+    /* Slow organic growth */
+}
+
+.footer-trunk-fill img {
+    height: 100%;
+    width: auto;
+    display: block;
+    /* Optional: Make it look like glowing sap/gold */
+    filter: brightness(1.1) saturate(1.2) drop-shadow(0 0 10px rgba(255, 215, 0, 0.4));
+}
+
+/* The Active State (Launched via JS) */
+.footer-trunk-fill.grow-active {
+    clip-path: inset(0 0 0 0);
+    /* Reveal everything */
+}
+
+
+/* 3. CONTENT ON TOP */
+.footer-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    margin-bottom: 60px;
+    /* Push up from very bottom */
+    width: 100%;
+}
+
+.footer-name {
+    font-family: 'Beyond Wonderland', serif;
+    font-size: 6rem;
+    color: #e3d5b0;
+    /* Light parchment */
+    text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.8);
+    -webkit-text-stroke: 1px #5a3a1a;
+    /* Dark Wood Stroke */
+    margin: 0;
+    line-height: 1;
+    font-weight: normal;
+
+    /* Reveal animation for text too? */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+    transition-delay: 0.5s;
+    /* Wait for tree to start growing */
+}
+
+.footer-role {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-style: italic;
+    color: #dccaa0;
+    /* Muted gold/parchment */
+    margin: 10px 0 30px 0;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    font-weight: 500;
+
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+    transition-delay: 1.2s;
+    /* Stagger after name */
+}
+
+.footer-copyright {
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.3);
+    margin-top: 40px;
+
+    opacity: 0;
+    transition: opacity 2s;
+    transition-delay: 2.5s;
+}
+
+/* Active State for Text */
+#fantasy-footer.footer-animate .footer-name,
+#fantasy-footer.footer-animate .footer-role,
+#fantasy-footer.footer-animate .footer-copyright {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .footer-container {
+        height: 350px;
+        align-items: center;
+        /* Center vertically on mobile */
+    }
+
+    .footer-name {
+        font-size: 3.5rem;
+    }
+
+    .footer-role {
+        font-size: 1.2rem;
+        padding: 0 20px;
+    }
+
+    .footer-trunk-base,
+    .footer-trunk-fill {
+        width: 100%;
+        /* Fill width on mobile if needed */
+        height: auto;
+        bottom: -20%;
+        /* Push down slightly */
+
+    }
+
+    .footer-trunk-fill img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+/* Horizontal Footer Font Override */
+#horizontal-footer,
+#horizontal-footer * {
+    font-family: 'IM Fell DW Pica SC', serif !important;
+    font-size: 1.2rem;
+}

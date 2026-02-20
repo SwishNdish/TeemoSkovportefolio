@@ -1,0 +1,338 @@
+/* === PROJECTS SECTION === */
+#projects {
+    position: relative;
+    width: 100%;
+    min-height: 120vh;
+    /* Ensure enough space for the layout */
+    background-color: #080603;
+    /* Dark warm near-black */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 50px 0;
+}
+
+/* Vignette Background */
+.book-vignette {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(ellipse at center, rgba(180, 130, 60, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Persistent Book Container */
+.book-container {
+    position: relative;
+    width: 85vw;
+    max-width: 1400px;
+    height: auto;
+    /* Maintain aspect ratio or max height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.ancient-book {
+    width: 100%;
+    height: auto;
+    max-height: 85vh;
+    /* Prevent overflowing viewport too much */
+    object-fit: contain;
+    filter: drop-shadow(0px 30px 80px rgba(0, 0, 0, 0.85));
+    display: block;
+}
+
+/* PROJECTS HEADLINE */
+.projects-headline {
+    position: absolute;
+    top: -15vh;
+    /* Position above the book */
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    width: 100%;
+    text-align: center;
+
+    font-family: 'Beyond Wonderland', serif;
+    font-size: clamp(3.5rem, 7vw, 8rem);
+    color: #c9a96e;
+    letter-spacing: 0.12em;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+
+    opacity: 0;
+    transition: opacity 1.4s ease-out, transform 1.4s ease-out;
+    z-index: 10;
+    margin-bottom: 1rem;
+}
+
+.projects-headline.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* === CHAPTER CONTENT === */
+
+/* LEFT PAGE: Handwritten Title */
+.handwritten-title-wrapper {
+    position: absolute;
+    top: 22%;
+    left: 8%;
+    width: 35%;
+    z-index: 5;
+    pointer-events: none;
+    /* Let clicks pass if needed */
+}
+
+.handwritten-title {
+    font-family: 'Beyond Wonderland', serif;
+    font-size: clamp(1.8rem, 3vw, 3rem);
+    color: #3b2510;
+    /* Dark ink sepia */
+    opacity: 0.88;
+    margin: 0;
+    line-height: 1.1;
+}
+
+.hw-letter {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.hw-letter.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.decorative-line {
+    width: 0px;
+    height: 1px;
+    background-color: #7a5230;
+    opacity: 0;
+    /* Starts hidden */
+    margin-top: 10px;
+    transition: width 0.6s ease-out, opacity 0.6s ease-out;
+}
+
+.decorative-line.revealed {
+    width: 60px;
+    /* Or variable width */
+    opacity: 0.5;
+}
+
+/* RIGHT PAGE: Frame & Video */
+.frame-wrapper {
+    position: absolute;
+    top: 18%;
+    right: 7%;
+    width: clamp(160px, 20vw, 260px);
+    z-index: 5;
+    transform-origin: top center;
+    animation: frameSway 4s ease-in-out infinite;
+    cursor: pointer;
+}
+
+@keyframes frameSway {
+
+    0%,
+    100% {
+        transform: rotate(-1.2deg);
+    }
+
+    50% {
+        transform: rotate(1.2deg);
+    }
+}
+
+.frame-rope {
+    width: 2px;
+    height: 28px;
+    background: #5a3a1a;
+    margin: 0 auto;
+    display: block;
+    position: relative;
+}
+
+/* Nail header */
+.frame-rope::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -3px;
+    width: 8px;
+    height: 8px;
+    background: #5a3a1a;
+    border-radius: 50%;
+}
+
+.frame-inner {
+    position: relative;
+    width: 100%;
+    /* Aspect ratio handled by content or overlay */
+    display: flex;
+    /* Collapses to content */
+}
+
+.frame-overlay {
+    position: relative;
+    /* Defines dimensions */
+    width: 100%;
+    height: auto;
+    z-index: 2;
+    pointer-events: none;
+    display: block;
+}
+
+.frame-video {
+    position: absolute;
+    inset: 14%;
+    /* Adjusted to fit inside frame border */
+    width: 72%;
+    height: 72%;
+    object-fit: cover;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    border-radius: 2px;
+    filter: sepia(0.15);
+}
+
+/* CTA Play Button */
+.frame-cta {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.play-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(201, 169, 110, 0.85);
+    border: 2px solid #c9a96e;
+    color: #3b2510;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.play-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 18px rgba(201, 169, 110, 0.65);
+}
+
+.play-label {
+    font-family: 'Beyond Wonderland', serif;
+    font-size: 0.7rem;
+    color: #c9a96e;
+    letter-spacing: 0.08em;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+
+/* LIGHTBOX MODAL */
+.video-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.video-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 6, 3, 0.93);
+    backdrop-filter: blur(4px);
+}
+
+#modal-video {
+    position: relative;
+    z-index: 1;
+    max-width: 90vw;
+    max-height: 85vh;
+    border: 1px solid rgba(201, 169, 110, 0.3);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+}
+
+.modal-close {
+    position: absolute;
+    top: 24px;
+    right: 32px;
+    z-index: 2;
+    font-family: 'Beyond Wonderland', serif;
+    font-size: 2rem;
+    color: #c9a96e;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, color 0.2s;
+}
+
+.modal-close:hover {
+    transform: scale(1.1);
+    color: #fff;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .ancient-book {
+        /* Ensure book visible on mobile */
+        width: 96vw;
+    }
+
+    .projects-headline {
+        font-size: 3rem;
+        /* Fallback/Adjustment */
+        top: -10vh;
+    }
+
+    .handwritten-title-wrapper {
+        position: relative;
+        top: auto;
+        left: auto;
+        margin-bottom: 2rem;
+        text-align: center;
+        width: 80%;
+    }
+
+    .frame-wrapper {
+        position: relative;
+        top: auto;
+        right: auto;
+        width: 60vw;
+        max-width: 200px;
+        /* Limit size on mobile */
+    }
+
+    .book-container {
+        flex-direction: column;
+        display: block;
+        /* To allow absolutes to work relative to it */
+    }
+}
